@@ -10,8 +10,8 @@ class MenuController extends Controller
 {
     public function menu(){
         $food['food']=DB::table('food_menu')->get();
-        $food_1 ['food_category']=DB::table('food_category')->get();
+        $foodd ['food_category']=DB::table('food_category')->get();
 
-        return view('frontend.menu',$food,$food_1);
+        return view('frontend.menu',$food,$foodd);
     }
 }

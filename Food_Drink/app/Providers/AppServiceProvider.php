@@ -33,5 +33,5 @@ class AppServiceProvider extends ServiceProvider
         // }catch(Exception $e){
         //         dump('Database Connection Filed');
         // }
-    }
+     }
 }

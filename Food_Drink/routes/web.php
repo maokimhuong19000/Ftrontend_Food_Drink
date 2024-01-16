@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\MasterController;
 use App\Http\Controllers\Fronted\AboutController;
 use App\Http\Controllers\Fronted\BlogController;
 use App\Http\Controllers\Fronted\CartController;
@@ -38,3 +39,6 @@ Route::get('/productsingle',[ProductSingleController::class,'productsingle']);
 Route::get('cart',[CartController::class,'cart']);
 Route::get('/checkout',[CheckOutController::class,'checkout']);
 
+Route::group(['prefix'=>'admin'],function(){
+    Route::get('/',[MasterController::class,'master']);
+});
