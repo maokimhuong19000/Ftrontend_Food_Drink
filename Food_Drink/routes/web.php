@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Backend\ButtonsController;
+use App\Http\Controllers\Backend\InsertFoodController;
+use App\Http\Controllers\Backend\LoginController;
 use App\Http\Controllers\Backend\MasterController;
 use App\Http\Controllers\Fronted\AboutController;
 use App\Http\Controllers\Fronted\BlogController;
@@ -41,4 +44,8 @@ Route::get('/checkout',[CheckOutController::class,'checkout']);
 
 Route::group(['prefix'=>'admin'],function(){
     Route::get('/',[MasterController::class,'master']);
+    Route::get('/login',[LoginController::class,'login']);
+    Route::get('/insert',[InsertFoodController::class,'insert']);
+    Route::get('/button',[ButtonsController::class,'button']);
+
 });

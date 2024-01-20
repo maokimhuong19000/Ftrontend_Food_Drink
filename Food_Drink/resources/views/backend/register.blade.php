@@ -1,5 +1,5 @@
-<link href="{{ asset('/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-<link href="{{ asset('/css/sb-admin-2.min.css') }}" rel="stylesheet">
+<link href="{{asset('backend/assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+<link href="{{asset('backend/assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
 <body class="bg-gradient-primary">
 
     <div class="container">

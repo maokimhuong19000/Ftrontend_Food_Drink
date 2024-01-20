@@ -1,5 +1,5 @@
-<link href="{{ asset('/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-<link href="{{ asset('/css/sb-admin-2.min.css') }}" rel="stylesheet">
+<link href="{{asset('backend/assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+<link href="{{asset('backend/assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
 <script src="{{ asset('/vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('/vendor/jquery-easing/jquery.easing.min.js') }}"></script>

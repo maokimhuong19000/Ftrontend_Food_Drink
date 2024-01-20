@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('food_category', function (Blueprint $table) {
-            $table->integer('food_category_id');
-            $table->string('food_category_name');
+            $table->integer('food_category_id')->unique();
+            $table->string('food_category_name')->unique();
             $table->string('food_category_desc');
             $table->timestamps();
         });
