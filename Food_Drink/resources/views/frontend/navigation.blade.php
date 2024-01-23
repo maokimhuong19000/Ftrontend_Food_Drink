@@ -8,7 +8,7 @@
             </button>
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="http://127.0.0.1:8000" class="nav-link">Home</a></li>
+                    <li class="nav-item "><a href="http://127.0.0.1:8000" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="http://127.0.0.1:8000/menu" class="nav-link">Menu</a></li>
                     <li class="nav-item"><a href="http://127.0.0.1:8000/service" class="nav-link">Services</a></li>
                     <li class="nav-item"><a href="http://127.0.0.1:8000/blog" class="nav-link">Blog</a></li>

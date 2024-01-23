@@ -145,7 +145,7 @@
 					<p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and
 						Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the
 						coast of the Semantics, a large language ocean.</p>
-					<p><a href="#" class="btn btn-primary btn-outline-primary px-4 py-3">View Full Menu</a></p>
+					<p><a href="http://127.0.0.1:8000/menu" class="btn btn-primary btn-outline-primary px-4 py-3">View Full Menu</a></p>
 				</div>
 			</div>
 			<div class="col-md-6">

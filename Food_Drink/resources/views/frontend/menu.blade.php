@@ -371,7 +371,7 @@
 												<p>Far far away, behind the word mountains, far from the countries
 													Vokalia and Consonantia.</p>
 												<p class="price"><span>$2.90</span></p>
-												<p><a href="#" class="btn btn-primary btn-outline-primary">Add to
+												<p><a href="http://127.0.0.1:8000/cart" class="btn btn-primary btn-outline-primary">Add to
 														cart</a></p>
 											</div>
 										</div>
@@ -385,7 +385,7 @@
 												<p>Far far away, behind the word mountains, far from the countries
 													Vokalia and Consonantia.</p>
 												<p class="price"><span>$2.90</span></p>
-												<p><a href="#" class="btn btn-primary btn-outline-primary">Add to
+												<p><a href="http://127.0.0.1:8000/cart" class="btn btn-primary btn-outline-primary">Add to
 														cart</a></p>
 											</div>
 										</div>
@@ -399,7 +399,7 @@
 												<p>Far far away, behind the word mountains, far from the countries
 													Vokalia and Consonantia.</p>
 												<p class="price"><span>$2.90</span></p>
-												<p><a href="#" class="btn btn-primary btn-outline-primary">Add to
+												<p><a href="http://127.0.0.1:8000/cart" class="btn btn-primary btn-outline-primary">Add to
 														cart</a></p>
 											</div>
 										</div>
@@ -413,7 +413,7 @@
 												<p>Far far away, behind the word mountains, far from the countries
 													Vokalia and Consonantia.</p>
 												<p class="price"><span>$2.90</span></p>
-												<p><a href="#" class="btn btn-primary btn-outline-primary">Add to
+												<p><a href="http://127.0.0.1:8000/cart" class="btn btn-primary btn-outline-primary">Add to
 														cart</a></p>
 											</div>
 										</div>
@@ -427,7 +427,7 @@
 												<p>Far far away, behind the word mountains, far from the countries
 													Vokalia and Consonantia.</p>
 												<p class="price"><span>$2.90</span></p>
-												<p><a href="#" class="btn btn-primary btn-outline-primary">Add to
+												<p><a href="http://127.0.0.1:8000/cart" class="btn btn-primary btn-outline-primary">Add to
 														cart</a></p>
 											</div>
 										</div>
@@ -441,7 +441,7 @@
 												<p>Far far away, behind the word mountains, far from the countries
 													Vokalia and Consonantia.</p>
 												<p class="price"><span>$2.90</span></p>
-												<p><a href="#" class="btn btn-primary btn-outline-primary">Add to
+												<p><a href="http://127.0.0.1:8000/cart" class="btn btn-primary btn-outline-primary">Add to
 														cart</a></p>
 											</div>
 										</div>
@@ -460,7 +460,7 @@
 												<p>Far far away, behind the word mountains, far from the countries
 													Vokalia and Consonantia.</p>
 												<p class="price"><span>$2.90</span></p>
-												<p><a href="#" class="btn btn-primary btn-outline-primary">Add to
+												<p><a href="http://127.0.0.1:8000/cart" class="btn btn-primary btn-outline-primary">Add to
 														cart</a></p>
 											</div>
 										</div>
@@ -474,7 +474,7 @@
 												<p>Far far away, behind the word mountains, far from the countries
 													Vokalia and Consonantia.</p>
 												<p class="price"><span>$2.90</span></p>
-												<p><a href="#" class="btn btn-primary btn-outline-primary">Add to
+												<p><a href="http://127.0.0.1:8000/cart" class="btn btn-primary btn-outline-primary">Add to
 														cart</a></p>
 											</div>
 										</div>
@@ -488,7 +488,7 @@
 												<p>Far far away, behind the word mountains, far from the countries
 													Vokalia and Consonantia.</p>
 												<p class="price"><span>$2.90</span></p>
-												<p><a href="#" class="btn btn-primary btn-outline-primary">Add to
+												<p><a href="http://127.0.0.1:8000/cart" class="btn btn-primary btn-outline-primary">Add to
 														cart</a></p>
 											</div>
 										</div>
@@ -502,7 +502,7 @@
 												<p>Far far away, behind the word mountains, far from the countries
 													Vokalia and Consonantia.</p>
 												<p class="price"><span>$2.90</span></p>
-												<p><a href="#" class="btn btn-primary btn-outline-primary">Add to
+												<p><a href="http://127.0.0.1:8000/cart" class="btn btn-primary btn-outline-primary">Add to
 														cart</a></p>
 											</div>
 										</div>
@@ -516,7 +516,7 @@
 												<p>Far far away, behind the word mountains, far from the countries
 													Vokalia and Consonantia.</p>
 												<p class="price"><span>$2.90</span></p>
-												<p><a href="#" class="btn btn-primary btn-outline-primary">Add to
+												<p><a href="http://127.0.0.1:8000/cart" class="btn btn-primary btn-outline-primary">Add to
 														cart</a></p>
 											</div>
 										</div>
@@ -530,7 +530,7 @@
 												<p>Far far away, behind the word mountains, far from the countries
 													Vokalia and Consonantia.</p>
 												<p class="price"><span>$2.90</span></p>
-												<p><a href="#" class="btn btn-primary btn-outline-primary">Add to
+												<p><a href="http://127.0.0.1:8000/cart" class="btn btn-primary btn-outline-primary">Add to
 														cart</a></p>
 											</div>
 										</div>
@@ -549,7 +549,7 @@
 												<p>Far far away, behind the word mountains, far from the countries
 													Vokalia and Consonantia.</p>
 												<p class="price"><span>$2.90</span></p>
-												<p><a href="#" class="btn btn-primary btn-outline-primary">Add to
+												<p><a href="http://127.0.0.1:8000/cart" class="btn btn-primary btn-outline-primary">Add to
 														cart</a></p>
 											</div>
 										</div>
@@ -563,7 +563,7 @@
 												<p>Far far away, behind the word mountains, far from the countries
 													Vokalia and Consonantia.</p>
 												<p class="price"><span>$2.90</span></p>
-												<p><a href="#" class="btn btn-primary btn-outline-primary">Add to
+												<p><a href="http://127.0.0.1:8000/cart" class="btn btn-primary btn-outline-primary">Add to
 														cart</a></p>
 											</div>
 										</div>
@@ -577,7 +577,7 @@
 												<p>Far far away, behind the word mountains, far from the countries
 													Vokalia and Consonantia.</p>
 												<p class="price"><span>$2.90</span></p>
-												<p><a href="#" class="btn btn-primary btn-outline-primary">Add to
+												<p><a href="http://127.0.0.1:8000/cart" class="btn btn-primary btn-outline-primary">Add to
 														cart</a></p>
 											</div>
 										</div>
@@ -591,7 +591,7 @@
 												<p>Far far away, behind the word mountains, far from the countries
 													Vokalia and Consonantia.</p>
 												<p class="price"><span>$2.90</span></p>
-												<p><a href="#" class="btn btn-primary btn-outline-primary">Add to
+												<p><a href="http://127.0.0.1:8000/cart" class="btn btn-primary btn-outline-primary">Add to
 														cart</a></p>
 											</div>
 										</div>
@@ -605,7 +605,7 @@
 												<p>Far far away, behind the word mountains, far from the countries
 													Vokalia and Consonantia.</p>
 												<p class="price"><span>$2.90</span></p>
-												<p><a href="#" class="btn btn-primary btn-outline-primary">Add to
+												<p><a href="http://127.0.0.1:8000/cart" class="btn btn-primary btn-outline-primary">Add to
 														cart</a></p>
 											</div>
 										</div>
@@ -619,7 +619,7 @@
 												<p>Far far away, behind the word mountains, far from the countries
 													Vokalia and Consonantia.</p>
 												<p class="price"><span>$2.90</span></p>
-												<p><a href="#" class="btn btn-primary btn-outline-primary">Add to
+												<p><a href="http://127.0.0.1:8000/cart" class="btn btn-primary btn-outline-primary">Add to
 														cart</a></p>
 											</div>
 										</div>
