@@ -1,5 +1,5 @@
-<link href="{{asset('backend/assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-<link href="{{asset('backend/assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
+<link href="{{ asset('backend/assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('backend/assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
 <body id="page-top">
 
@@ -343,39 +343,62 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Room Information</h1>
-                    <p class="mb-4"><a target="_blank"
-                            {{-- href="https://datatables.net">official DataTables documentation</a>.</p> --}}
-
-                    <!-- DataTales Example -->
+                    <h1 class="h3 mb-2 text-gray-800">Food Information</h1>
+                    <p class="mb-4">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Food Menu List</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                                     <thead>
                                         <tr>
                                             <th>ID</th>
+                                            <th>Image</th>
                                             <th>Name</th>
+                                            <th>Price</th>
                                             <th>Status</th>
+                                            <th>Category</th>
                                             <th>Description</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
-                                        @foreach ($rooms as $item)
-                                        <tr>
-                                            <th>{{$item->room_id}}</th>
-                                            <th>{{$item->room_name}}</th>
-                                            <th>{{$item->status}}</th>
-                                            <th>{{$item->room_desc}}</th>
-                                        </tr>
+                                        @php($i = 1)
+                                        @foreach ($food as $item)
+                                            <tr>
+                                                <th>{{ $item->food_id }}</th>
+                                                <th><img src="{{ asset($item->food_img) }}" alt="Food Image" width="100" height="100"></th>
+                                                <th>{{ $item->food_name }}</th>
+                                                <th>{{ $item->price . ".00$" }}</th>
+                                                <th>
+                                                    @if ($item->food_status == 1)
+                                                        Active
+                                                    @elseif($item->food_status == 0)
+                                                        Offactive
+                                                    @else
+                                                    @endif
+                                                </th>
+                                                <th>{{ \App\Models\InsertData::getCategoryNameById($item->food_category_id) }}
+                                                </th>
+                                                <th>{{ $item->food_desc }}</th>
+                                                <th>
+                                                    <button type="button" class="btn btn-primary"><i
+                                                            class="fas fa-edit"></i></button>
+                                                    <button type="button" class="btn btn-success"><i
+                                                            class="fas fa-eye"></i></button>
+                                                    <button type="button" class="btn btn-danger"><i
+                                                            class="fas fa-trash"></i></button>
+
+
+                                                </th>
+                                            </tr>
                                         @endforeach
                                     </tfoot>
-
                                     </tbody>
                                 </table>
+                                {{ $food->links('vendor/pagination/bootstrap-5') }}
                             </div>
                         </div>
                     </div>

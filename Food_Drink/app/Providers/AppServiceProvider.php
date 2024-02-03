@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Database\Schema\Builder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
+use Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-         Builder::defaultStringLength(191);
+         Schema::defaultStringLength(191);
         // try{
         //         DB::connection()->getPDO();
         //         dump('Database is Connected. Database Name is :'.DB::connection()->getDatabaseName());

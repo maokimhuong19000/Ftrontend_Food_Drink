@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\Backend\ButtonsController;
+use App\Http\Controllers\Backend\InsertDataController;
+
 use App\Http\Controllers\Backend\InsertFoodController;
 use App\Http\Controllers\Backend\LoginController;
 use App\Http\Controllers\Backend\MasterController;
+use App\Http\Controllers\Backend\TableController;
 use App\Http\Controllers\Fronted\AboutController;
 use App\Http\Controllers\Fronted\BlogController;
 use App\Http\Controllers\Fronted\CartController;
@@ -48,5 +51,9 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('/login',[LoginController::class,'login']);
     Route::get('/insert',[InsertFoodController::class,'insert']);
     Route::get('/button',[ButtonsController::class,'button']);
+    Route::get('/table',[TableController::class,'table']);
+    Route::POST('/save',[InsertFoodController::class,'save']);
+
+
 
 });

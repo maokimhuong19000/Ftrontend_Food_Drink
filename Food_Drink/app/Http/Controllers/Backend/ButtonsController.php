@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class ButtonsController extends Controller
 {
+
     public function button(){
         return view('backend.buttons');
     }
