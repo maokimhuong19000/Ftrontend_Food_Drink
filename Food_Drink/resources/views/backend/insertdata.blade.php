@@ -2,6 +2,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
@@ -42,10 +43,15 @@
 
         <div class="col-sm-9">
             @if (Session::has('sucess'))
-            <div class="alert alert-success" role="alert">
-                Insert Success
-            </div>
-        @endif
+                <div class="alert alert-success" role="alert">
+                    Insert Success
+                </div>
+            @endif
+            @if (Session::has('error'))
+                <div class="alert alert-ligh" role="alert">
+                    Insert Was Something Wrong
+                </div>
+            @endif
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#home">Food</a></li>
             </ul>

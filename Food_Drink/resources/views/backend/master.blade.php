@@ -51,7 +51,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="{{ url('http://127.0.0.1:8000/admin/button') }}">Buttons</a>
+                        <a class="collapse-item" href="{{ url('http://127.0.0.1:8000/admin/button') }}">Add Menu</a>
+
                         <a class="collapse-item" href="{{ url('http://127.0.0.1:8000/admin/cards') }}">Cards</a>
                     </div>
                 </div>

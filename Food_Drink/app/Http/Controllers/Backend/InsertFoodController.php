@@ -34,7 +34,9 @@ class InsertFoodController extends Controller
         );
         $i=DB::table('food_menu')->insert($fdata);
         if($i){
-            return redirect('admin/insert')->with('sucess','data has been insert');
+            return redirect('admin/table')->with('sucess','data has been insert');
+        }else{
+            return back()-with('error','Sothing Wrong Please Check!');
         }
     }
 }
