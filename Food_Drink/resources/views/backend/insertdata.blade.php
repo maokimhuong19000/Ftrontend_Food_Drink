@@ -47,11 +47,7 @@
                     Insert Success
                 </div>
             @endif
-            @if (Session::has('error'))
-                <div class="alert alert-ligh" role="alert">
-                    Insert Was Something Wrong
-                </div>
-            @endif
+
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#home">Food</a></li>
             </ul>

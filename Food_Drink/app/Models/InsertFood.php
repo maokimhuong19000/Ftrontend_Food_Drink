@@ -11,9 +11,6 @@ class InsertFood extends Model
 
 
     protected $table='food_menu';
-    protected $fillable=[
-        'food_id',
-        'food_name',
-        'price',
-    ];
+
+    protected $primaryKey = 'food_id';
 }

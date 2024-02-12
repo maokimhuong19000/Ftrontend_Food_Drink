@@ -46,7 +46,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="{{ url('http://127.0.0.1:8000/admin/button') }}">Buttons</a>
+                        <a class="collapse-item" href="{{ url('http://127.0.0.1:8000/admin/button') }}">Add Menu</a>
                         <a class="collapse-item" href="{{ url('http://127.0.0.1:8000/admin/cards') }}">Cards</a>
                     </div>
                 </div>
@@ -351,7 +351,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -364,46 +364,69 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        @php($i = 1)
+                                    <tbody>
                                         @foreach ($food as $item)
                                             <tr>
-                                                <th>{{ $item->food_id }}</th>
-                                                <th><img src="{{ asset($item->food_img) }}" alt="Food Image" width="100" height="100"></th>
-                                                <th>{{ $item->food_name }}</th>
-                                                <th>{{ $item->price . ".00$" }}</th>
-                                                <th>
+                                                <td>{{ $item->food_id }}</td>
+                                                <td><img src="{{ asset($item->food_img) }}" alt="Food Image"
+                                                        width="100" height="100"></td>
+                                                <td>{{ $item->food_name }}</td>
+                                                <td>{{ $item->price . ".00$" }}</td>
+                                                <td>
                                                     @if ($item->food_status == 1)
                                                         Active
                                                     @elseif($item->food_status == 0)
                                                         Offactive
                                                     @else
                                                     @endif
-                                                </th>
-                                                <th>{{ \App\Models\InsertData::getCategoryNameById($item->food_category_id) }}
-                                                </th>
-                                                <th>{{ $item->food_desc }}</th>
-                                                <th>
+                                                </td>
+                                                <td>{{ \App\Models\InsertData::getCategoryNameById($item->food_category_id) }}
+                                                </td>
+                                                <td>{{ $item->food_desc }}</td>
+                                                <td>
+                                                    <!-- Delete Form -->
                                                     <button type="button" class="btn btn-primary"><i
                                                             class="fas fa-edit"></i></button>
                                                     <button type="button" class="btn btn-success"><i
                                                             class="fas fa-eye"></i></button>
-                                                    <button type="button" class="btn btn-danger"><i
-                                                            class="fas fa-trash"></i></button>
-
-
-                                                </th>
+                                                    <form
+                                                        action="{{ route('food.destroy', ['id' => $item->food_id]) }}"
+                                                        method="POST" id="deleteForm{{ $item->food_id }}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="button" class="btn btn-danger delete-btn"
+                                                            data-food-id="{{ $item->food_id }}"><i
+                                                                class="fas fa-trash"></i></button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         @endforeach
-                                    </tfoot>
                                     </tbody>
+
                                 </table>
                                 {{ $food->links('vendor/pagination/bootstrap-5') }}
                             </div>
                         </div>
                     </div>
-
                 </div>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        const deleteButtons = document.querySelectorAll('.delete-btn');
+
+                        deleteButtons.forEach(button => {
+                            button.addEventListener('click', function() {
+                                const foodId = this.getAttribute('data-food-id');
+                                const confirmation = confirm("Are you sure you want to delete this item?");
+
+                                if (confirmation) {
+                                    // If user confirms, submit the corresponding form
+                                    document.getElementById('deleteForm' + foodId).submit();
+                                }
+                            });
+                        });
+                    });
+                </script>
+
                 <!-- /.container-fluid -->
 
             </div>

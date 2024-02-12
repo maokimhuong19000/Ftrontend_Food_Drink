@@ -15,8 +15,6 @@ class InsertFoodController extends Controller
         $cfood['cfood'] = DB::table('food_category')
             ->select('food_category_id', 'food_category_name')
             ->get();
-
-
         return view('backend.insertdata', $cfood);
     }
 
@@ -37,9 +35,20 @@ class InsertFoodController extends Controller
         $i = DB::table('food_menu')->insert($fdata);
         if ($i) {
             return redirect('admin/table')->with('sucess', 'data has been insert');
-        } else {
-            return back() - with('error', 'Sothing Wrong Please Check!');
         }
+    }
+    public function destroy($id)
+    {
+        // Find the item by ID
+        $food = InsertFood::findOrFail($id);
 
+        // Delete the item
+        $deleted = $food->delete();
+
+        if ($deleted) {
+            return redirect()->back()->with('success', 'Food item deleted successfully.');
+        } else {
+            return redirect()->back()->with('error', 'Failed to delete food item.');
+        }
     }
 }
