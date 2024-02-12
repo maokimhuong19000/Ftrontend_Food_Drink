@@ -15,6 +15,5 @@ class InsertFood extends Model
         'food_id',
         'food_name',
         'price',
-
     ];
 }
