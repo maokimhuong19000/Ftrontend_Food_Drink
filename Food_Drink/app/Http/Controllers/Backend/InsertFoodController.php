@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\InsertFood;
 use Illuminate\Http\Request;
 use App\Models\InsertData;
+use Exception;
 use Illuminate\Support\Facades\DB;
 
 class InsertFoodController extends Controller
@@ -20,23 +21,41 @@ class InsertFoodController extends Controller
 
     public function save(Request $req)
     {
-        $inser_food = InsertFood::all();
-        $fdata = $req->except('_token');
+        // Validate the request
+        $req->validate([
+            'food_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            // Add other validation rules for your fields here
+        ]);
 
-        // dd($data);
-        $fdata = array(
-            'food_id' => $req->food_id,
-            'food_name' => $req->food_name,
-            'price' => $req->price,
-            'food_status' => $req->food_status,
-            'food_desc' => $req->food_desc,
-            'food_category_id' => $req->food_category_id
-        );
-        $i = DB::table('food_menu')->insert($fdata);
-        if ($i) {
-            return redirect('admin/table')->with('sucess', 'data has been insert');
+        try {
+            // Handle file upload
+            if ($req->hasFile('food_img')) {
+                $image = $req->file('food_img');
+                $imageName ='frontend/assets/images/' . time() . $image->getClientOriginalExtension();
+                $image->move(public_path('frontend/assets/images'), $imageName);
+            }
+
+            // Create the food data array
+            $fdata = [
+                'food_id' => $req->food_id,
+                'food_name' => $req->food_name,
+                'price' => $req->price,
+                'food_status' => $req->food_status,
+                'food_desc' => $req->food_desc,
+                'food_category_id' => $req->food_category_id,
+                'food_img' => $imageName // Add the image name to the data array
+            ];
+
+            // Insert data into the database
+            $i = DB::table('food_menu')->insert($fdata);
+            if ($i) {
+                return redirect('admin/button')->with('success', 'Data has been inserted.');
+            }
+        } catch (Exception $e) {
+            return back()->with('error', 'Something went wrong!');
         }
     }
+
     public function destroy($id)
     {
         // Find the item by ID

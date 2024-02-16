@@ -10,8 +10,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center"
-                href="{{ url('http://127.0.0.1:8000/admin') }}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/admin') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -146,8 +145,8 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small"
-                                placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -286,8 +285,8 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle"
-                                            src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                            alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div>
@@ -326,8 +325,7 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal"
-                                    data-target="#logoutModal">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -366,40 +364,41 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($food as $item)
-                                            <tr>
-                                                <td>{{ $item->food_id }}</td>
-                                                <td><img src="{{ asset($item->food_img) }}" alt="Food Image"
-                                                        width="100" height="100"></td>
-                                                <td>{{ $item->food_name }}</td>
-                                                <td>{{ $item->price . ".00$" }}</td>
-                                                <td>
-                                                    @if ($item->food_status == 1)
-                                                        Active
-                                                    @elseif($item->food_status == 0)
-                                                        Offactive
-                                                    @else
-                                                    @endif
-                                                </td>
-                                                <td>{{ \App\Models\InsertData::getCategoryNameById($item->food_category_id) }}
-                                                </td>
-                                                <td>{{ $item->food_desc }}</td>
-                                                <td>
-                                                    <!-- Delete Form -->
-                                                    <button type="button" class="btn btn-primary"><i
-                                                            class="fas fa-edit"></i></button>
-                                                    <button type="button" class="btn btn-success"><i
-                                                            class="fas fa-eye"></i></button>
-                                                    <form
-                                                        action="{{ route('food.destroy', ['id' => $item->food_id]) }}"
-                                                        method="POST" id="deleteForm{{ $item->food_id }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="button" class="btn btn-danger delete-btn"
-                                                            data-food-id="{{ $item->food_id }}"><i
-                                                                class="fas fa-trash"></i></button>
-                                                    </form>
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td>{{ $item->food_id }}</td>
+                                            <td><img src="{{ asset($item->food_img) }}" alt="Food Image" width="100"
+                                                    height="100">
+                                            </td>
+                                            <td>{{ $item->food_name }}</td>
+                                            <td>{{ $item->price . ".00$" }}</td>
+                                            <td>
+                                                @if ($item->food_status == 1)
+                                                Active
+                                                @elseif($item->food_status == 0)
+                                                Offactive
+                                                @else
+                                                @endif
+                                            </td>
+                                            <td>{{ \App\Models\InsertData::getCategoryNameById($item->food_category_id)
+                                                }}
+                                            </td>
+                                            <td>{{ $item->food_desc }}</td>
+                                            <td>
+                                                <!-- Delete Form -->
+                                                <button type="button" class="btn btn-primary"><i
+                                                        class="fas fa-edit"></i></button>
+                                                <button type="button" class="btn btn-success"><i
+                                                        class="fas fa-eye"></i></button>
+                                                <form action="{{ route('food.destroy', ['id' => $item->food_id]) }}"
+                                                    method="POST" id="deleteForm{{ $item->food_id }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="button" class="btn btn-danger delete-btn"
+                                                        data-food-id="{{ $item->food_id }}"><i
+                                                            class="fas fa-trash"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
                                         @endforeach
                                     </tbody>
 
@@ -410,23 +409,28 @@
                     </div>
                 </div>
                 <script>
-                    document.addEventListener("DOMContentLoaded", function() {
+                    document.addEventListener("DOMContentLoaded", function () {
                         const deleteButtons = document.querySelectorAll('.delete-btn');
 
                         deleteButtons.forEach(button => {
-                            button.addEventListener('click', function() {
+                            button.addEventListener('click', function () {
                                 const foodId = this.getAttribute('data-food-id');
                                 const confirmation = confirm("Are you sure you want to delete this item?");
 
                                 if (confirmation) {
                                     // If user confirms, submit the corresponding form
-                                    document.getElementById('deleteForm' + foodId).submit();
+                                    const form = document.getElementById('deleteForm' + foodId);
+                                    if (form) {
+                                        form.submit();
+                                    } else {
+                                        console.error('Delete form not found for food ID:', foodId);
+                                    }
                                 }
                             });
                         });
                     });
-                </script>
 
+                </script>
                 <!-- /.container-fluid -->
 
             </div>

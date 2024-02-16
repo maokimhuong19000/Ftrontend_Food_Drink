@@ -1,9 +1,11 @@
 <script src="{{ asset('backend/assets/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('backend/assets/js/jquery.min.js') }}"></script>
-
 <link href="{{ asset('backend/assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('backend/assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
-{{-- <link href="{{ asset('backend/assets/css/bootstrap.min.css') }}" rel="stylesheet"> --}}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<link href="{{ asset('backend/assets/css/bootstrap.min.css') }}" rel="stylesheet">
 
 <body id="page-top">
 
@@ -42,8 +44,8 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item active">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+                    aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Components</span>
                 </a>
@@ -51,9 +53,10 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item active"
-                            href="{{ url('http://127.0.0.1:8000/admin/button') }}">Add Menu</a>
-                        {{-- <a class="collapse-item" href="{{ url('http://127.0.0.1:8000/admin/insert') }}">Add Menu</a> --}}
+                        <a class="collapse-item active" href="{{ url('http://127.0.0.1:8000/admin/button') }}">Add
+                            Menu</a>
+                        {{-- <a class="collapse-item" href="{{ url('http://127.0.0.1:8000/admin/insert') }}">Add
+                            Menu</a> --}}
                         <a class="collapse-item" href="{{ url('http://127.0.0.1:8000/admin/cards') }}">Cards</a>
                     </div>
                 </div>
@@ -151,8 +154,8 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small"
-                                placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -291,8 +294,8 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle"
-                                            src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                            alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div>
@@ -331,8 +334,7 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal"
-                                    data-target="#logoutModal">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -351,25 +353,40 @@
                             <h1>Food info</h1>
                         </div>
                     </div>
+                    <script>
+                        function previewImage(event) {
+                            var reader = new FileReader();
+                            reader.onload = function () {
+                                var output = document.getElementById('preview-image');
+                                output.src = reader.result;
+                            };
+                            reader.readAsDataURL(event.target.files[0]);
+                        }
+                    </script>
+
                     <div class="row">
                         <div class="col-sm-3"><!--left col-->
-                            <div class="text-center">
-                                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                                    class="avatar img-circle img-thumbnail" alt="avatar">
-                                <h6>Upload a photo...</h6>
-                                <input type="file" class="text-center center-block file-upload">
-                            </div>
-                            </hr><br>
+                            <form action="{{ route('save') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="text-center">
+                                    <img id="preview-image" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                                        class="avatar img-circle img-thumbnail" alt="avatar">
+                                    <h6>Upload a photo...</h6>
+                                    <input type="file" name="food_img" class="text-center center-block file-upload"
+                                        onchange="previewImage(event)">
+                                </div>
+                                </hr><br>
                         </div>
 
                         <!--/col-3-->
 
                         <div class="col-sm-9">
                             @if (Session::has('sucess'))
-                                <div class="alert alert-success" role="alert">
-                                    Insert Success
-                                </div>
+                            <div class="alert alert-success" role="alert">
+                                Insert Success
+                            </div>
                             @endif
+
                             <ul class="nav nav-tabs">
                                 <li class="active"><a data-toggle="tab" href="#home">Food</a></li>
                             </ul>
@@ -384,8 +401,8 @@
                                                 <label for="fId">
                                                     <h4> ID:</h4>
                                                 </label>
-                                                <input type="text" class="form-control" name="food_id"
-                                                    id="food_id" placeholder="ID" title="enter your ID">
+                                                <input type="text" class="form-control" name="food_id" id="food_id"
+                                                    placeholder="ID" title="enter your ID">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -394,9 +411,8 @@
                                                 <label for="food_name">
                                                     <h4>Name:</h4>
                                                 </label>
-                                                <input type="text" class="form-control" name="food_name"
-                                                    id="food_name" placeholder="food name"
-                                                    title="enter your food name">
+                                                <input type="text" class="form-control" name="food_name" id="food_name"
+                                                    placeholder="food name" title="enter your food name">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -405,8 +421,8 @@
                                                 <label for="price">
                                                     <h4>Price</h4>
                                                 </label>
-                                                <input type="text" class="form-control" name="price"
-                                                    id="price" placeholder="enter price" title="enter price">
+                                                <input type="text" class="form-control" name="price" id="price"
+                                                    placeholder="enter price" title="enter price">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -418,9 +434,9 @@
                                                     name="food_category_id">
                                                     <option selected>---Category---</option>
                                                     @foreach ($cfood as $item)
-                                                        <option value="{{ $item->food_category_id }}">
-                                                            {{ $item->food_category_name }}
-                                                        </option>
+                                                    <option value="{{ $item->food_category_id }}">
+                                                        {{ $item->food_category_name }}
+                                                    </option>
                                                     @endforeach
                                                 </select>
 
@@ -443,7 +459,8 @@
                                                 <label for="desc">
                                                     <h4>Description</h4>
                                                 </label>
-                                                <textarea class="form-control" name="food_desc" id="food_desc" rows="1"></textarea>
+                                                <textarea class="form-control" name="food_desc" id="food_desc"
+                                                    rows="1"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group">
