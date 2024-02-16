@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Form;
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -16,7 +16,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-    'row'=> '5',
+    'row' => '5',
 
     /*
     |--------------------------------------------------------------------------
@@ -172,6 +172,7 @@ return [
         /*
          * Application Service Providers...
          */
+        Collective\Html\HtmlServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
@@ -193,6 +194,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // ...
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
     ])->toArray(),
 
 ];
