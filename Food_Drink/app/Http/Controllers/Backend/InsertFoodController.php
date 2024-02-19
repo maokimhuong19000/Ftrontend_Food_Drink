@@ -24,7 +24,6 @@ class InsertFoodController extends Controller
         // Validate the request
         $req->validate([
             'food_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            // Add other validation rules for your fields here
         ]);
 
         try {
@@ -49,10 +48,10 @@ class InsertFoodController extends Controller
             // Insert data into the database
             $i = DB::table('food_menu')->insert($fdata);
             if ($i) {
-                return redirect('admin/button')->with('success', 'Data has been inserted.');
+                return redirect('admin/button')->with('success', 'Insert Success');
             }
-        } catch (Exception $e) {
-            return back()->with('error', 'Something went wrong!');
+        } catch (\Exception $e) {
+            return redirect('admin/button')->with('error', 'Insert Failed: ' . $e->getMessage());
         }
     }
 
