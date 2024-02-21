@@ -364,6 +364,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($food as $item)
+                                        @if ($item->food_active == 1)
                                         <tr>
                                             <td>{{ $item->food_id }}</td>
                                             <td><img src="{{ asset($item->food_img) }}" alt="Food Image" width="100"
@@ -399,6 +400,7 @@
                                                 </form>
                                             </td>
                                         </tr>
+                                        @endif
                                         @endforeach
                                     </tbody>
 
@@ -415,8 +417,7 @@
                         deleteButtons.forEach(button => {
                             button.addEventListener('click', function () {
                                 const foodId = this.getAttribute('data-food-id');
-                                const confirmation = confirm("Are you sure you want to delete this item?");
-
+                                const confirmation = confirm("Are you sure you want to delete this item?" +"Food ID"+ {{ $item->food_id }});
                                 if (confirmation) {
                                     // If user confirms, submit the corresponding form
                                     const form = document.getElementById('deleteForm' + foodId);

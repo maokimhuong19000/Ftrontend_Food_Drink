@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class InsertFoodController extends Controller
 {
+     //add data
     public function insert(Request $req)
     {
         $cfood['cfood'] = DB::table('food_category')
@@ -31,7 +32,7 @@ class InsertFoodController extends Controller
             // Handle file upload
             if ($req->hasFile('food_img')) {
                 $image = $req->file('food_img');
-                $imageName ='frontend/assets/images/' . time() . $image->getClientOriginalExtension();
+                $imageName ='frontend/assets/images/' . time() .'.'. $image->getClientOriginalExtension();
                 $image->move(public_path('frontend/assets/images'), $imageName);
             }
 
@@ -43,7 +44,10 @@ class InsertFoodController extends Controller
                 'food_status' => $req->food_status,
                 'food_desc' => $req->food_desc,
                 'food_category_id' => $req->food_category_id,
-                'food_img' => $imageName // Add the image name to the data array
+                'food_img' => $imageName,
+                'food_active' => $req->food_active == 1,
+
+                // Add the image name to the data array
             ];
 
             // Insert data into the database
@@ -55,19 +59,14 @@ class InsertFoodController extends Controller
             return back()->with('error', 'Something went wrong!');
         }
     }
-
+    //end add data
     public function destroy($id)
     {
         // Find the item by ID
-        $food = InsertFood::findOrFail($id);
-
-        // Delete the item
-        $deleted = $food->delete();
-
-        if ($deleted) {
-            return redirect()->back()->with('success', 'Food item deleted successfully.');
-        } else {
-            return redirect()->back()->with('error', 'Failed to delete food item.');
-        }
+       $i=DB::table('food_menu')
+       ->where('food_id',$id)
+       ->update(['food_active' => '0']);
+    //    dd($id);
+       return redirect('admin/table')->with('success', 'Data has been deleted successfully.');
     }
 }
