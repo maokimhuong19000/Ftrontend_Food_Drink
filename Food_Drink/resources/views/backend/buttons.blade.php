@@ -21,7 +21,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Khmer <sub>Food</sub></div>
             </a>
 
             <!-- Divider -->
@@ -381,12 +381,22 @@
                         <!--/col-3-->
 
                         <div class="col-sm-9">
+<<<<<<< HEAD
 
                             @if (Session::has('success'))
+=======
+                           
+                        @if (Session::has('success'))
+>>>>>>> cddebeb13385207a3991f88382a002219e13eb26
                             <div class="alert alert-success" role="alert">
                                 Insert Success
                             </div>
-                            @endif
+                        @endif
+                        @if (Session::has('error'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ Session::get('error') }}
+                            </div>
+                        @endif
 
 
 
