@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class InsertFoodController extends Controller
 {
-     //add data
+    //add data
     public function insert(Request $req)
     {
         $cfood['cfood'] = DB::table('food_category')
@@ -31,7 +31,7 @@ class InsertFoodController extends Controller
             // Handle file upload
             if ($req->hasFile('food_img')) {
                 $image = $req->file('food_img');
-                $imageName ='frontend/assets/images/' . time() .'.'. $image->getClientOriginalExtension();
+                $imageName = 'frontend/assets/images/' . time() . '.' . $image->getClientOriginalExtension();
                 $image->move(public_path('frontend/assets/images'), $imageName);
             }
 
@@ -54,18 +54,32 @@ class InsertFoodController extends Controller
             if ($i) {
                 return redirect('admin/button')->with('success', 'Insert Success');
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect('admin/button')->with('error', 'Insert Failed: ' . $e->getMessage());
         }
     }
     //end add data
+    // edit
+    public function edit($id)
+    {
+        $food = DB::table('food_menu')
+            ->where('food_id', $id)
+            ->first();
+
+        $cfood['cfood'] = DB::table('food_category')
+            ->select('food_category_id', 'food_category_name')
+            ->get();
+        return view('backend.edit', ['food' => $food],$cfood);
+    }
+
+    // end edit
     public function destroy($id)
     {
         // Find the item by ID
-       $i=DB::table('food_menu')
-       ->where('food_id',$id)
-       ->update(['food_active' => '0']);
-    //    dd($id);
-       return redirect('admin/table')->with('success', 'Data has been deleted successfully.');
+        $i = DB::table('food_menu')
+            ->where('food_id', $id)
+            ->update(['food_active' => '0']);
+        //    dd($id);
+        return redirect('admin/table')->with('success', 'Data has been deleted successfully.');
     }
 }

@@ -386,11 +386,12 @@
                                             <td>{{ $item->food_desc }}</td>
                                             <td>
                                                 <!-- Delete Form -->
-                                                <button type="button" class="btn btn-primary"><i
-                                                        class="fas fa-edit"></i></button>
+                                                <a href="{{ route('food.edit', ['id' => $item->food_id]) }}"
+                                                    class="btn btn-primary"><i class="fas fa-edit"></i></a>
+
                                                 <button type="button" class="btn btn-success"><i
                                                         class="fas fa-eye"></i></button>
-                                                <form action="{{ route('food.destroy', ['id' => $item->food_id]) }}"
+                                                <form action="{{route('food.destroy', ['id' => $item->food_id]) }}"
                                                     method="POST" id="deleteForm{{ $item->food_id }}">
                                                     @csrf
                                                     @method('DELETE')
@@ -417,17 +418,17 @@
                         deleteButtons.forEach(button => {
                             button.addEventListener('click', function () {
                                 const foodId = this.getAttribute('data-food-id');
-                                const confirmation = confirm("Are you sure you want to delete this item?" +"Food ID"+ {{ $item->food_id }});
-                                if (confirmation) {
-                                    // If user confirms, submit the corresponding form
-                                    const form = document.getElementById('deleteForm' + foodId);
-                                    if (form) {
-                                        form.submit();
-                                    } else {
-                                        console.error('Delete form not found for food ID:', foodId);
-                                    }
-                                }
-                            });
+                                const confirmation = confirm("Are you sure you want to delete this item?" + "Food ID" + {{ $item-> food_id }});
+                        if (confirmation) {
+                            // If user confirms, submit the corresponding form
+                            const form = document.getElementById('deleteForm' + foodId);
+                            if (form) {
+                                form.submit();
+                            } else {
+                                console.error('Delete form not found for food ID:', foodId);
+                            }
+                        }
+                    });
                         });
                     });
 

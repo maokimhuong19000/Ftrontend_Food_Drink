@@ -149,6 +149,7 @@
 			<div class="col-md-6 mb-5 pb-3">
 				<h3 class="mb-5 heading-pricing ftco-animate">Main Dish</h3>
 				<?php foreach ($food as $item): ?>
+
 				<div class="pricing-entry d-flex ftco-animate">
 					<div class="img" style="background-image: url(<?php echo $item->food_img; ?>);"></div>
 					<div class="desc pl-3">
@@ -167,6 +168,7 @@
 						</div>
 					</div>
 				</div>
+
 				<?php endforeach; ?>
 
 			</div>

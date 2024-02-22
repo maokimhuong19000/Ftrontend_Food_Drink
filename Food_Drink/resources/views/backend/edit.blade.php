@@ -21,7 +21,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Khmer <sub>Food</sub></div>
             </a>
 
             <!-- Divider -->
@@ -366,11 +366,10 @@
 
                     <div class="row">
                         <div class="col-sm-3"><!--left col-->
-                            <form action="{{ route('save') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('food.edit', ['id' => $food->food_id]) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="text-center">
-                                    <img id="preview-image" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                                        class="avatar img-circle img-thumbnail" alt="avatar">
+                                    <img id="food_img" src="{{ asset($food->food_img) }}"   class="avatar img-circle img-thumbnail" height="200px" width="200px"   alt="Food Image">
                                     <h6>Upload a photo...</h6>
                                     <input type="file" name="food_img" class="text-center center-block file-upload"
                                         onchange="previewImage(event)">
@@ -383,29 +382,32 @@
                         <div class="col-sm-9">
 
                             @if (Session::has('success'))
+
                             <div class="alert alert-success" role="alert">
                                 Insert Success
                             </div>
                             @endif
-
-
-
+                            @if (Session::has('error'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ Session::get('error') }}
+                            </div>
+                            @endif
                             <ul class="nav nav-tabs">
                                 <li class="active"><a data-toggle="tab" href="#home">Food</a></li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="home">
                                     <hr>
-                                    <form class="form" action="{{ url('/admin/save') }}" method="POST"
+                                    <form class="form"  method="POST"
                                         id="registrationForm" enctype="multipart/form-data">
                                         @csrf
+                                        <input type="hidden" name="food_id" value="{{$food->food_id}}">
                                         <div class="form-group">
                                             <div class="col-xs-6">
                                                 <label for="fId">
                                                     <h4> ID:</h4>
                                                 </label>
-                                                <input type="text" class="form-control" name="food_id" id="food_id"
-                                                    placeholder="ID" title="enter your ID">
+                                                <input type="text" class="form-control" name="food_id" id="food_id" value="{{ $food->food_id }}">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -414,8 +416,7 @@
                                                 <label for="food_name">
                                                     <h4>Name:</h4>
                                                 </label>
-                                                <input type="text" class="form-control" name="food_name" id="food_name"
-                                                    placeholder="food name" title="enter your food name">
+                                                <input type="text" class="form-control" name="food_name" id="food_name" value="{{$food->food_name}}">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -424,8 +425,7 @@
                                                 <label for="price">
                                                     <h4>Price</h4>
                                                 </label>
-                                                <input type="text" class="form-control" name="price" id="price"
-                                                    placeholder="enter price" title="enter price">
+                                                <input type="text" class="form-control" name="price" id="price" value="{{$food->price}}">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -435,9 +435,9 @@
                                                 </label>
                                                 <select class="form-control" id="food_category_id"
                                                     name="food_category_id">
-                                                    <option selected>---Category---</option>
+                                                    <option selected></option>
                                                     @foreach ($cfood as $item)
-                                                    <option value="{{ $item->food_category_id }}">
+                                                    <option value="{{ $item->food_category_id }}" {{$food->food_category_id==$item->food_category_id ? 'selected': ''}}>
                                                         {{ $item->food_category_name }}
                                                     </option>
                                                     @endforeach
@@ -452,8 +452,8 @@
                                                 </label>
                                                 <select class="form-control" id="food_status" name="food_status">
                                                     <option selected>......</option>
-                                                    <option value="1">Aailable</option>
-                                                    <option value="0">Unavilable</option>
+                                                    <option value="1" {{$food->food_status=='1' ? 'selected' : '' }}>Aailable</option>
+                                                    <option value="0" {{$food->food_status=='0' ? 'selected' : '' }}>Unavilable</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -463,14 +463,14 @@
                                                     <h4>Description</h4>
                                                 </label>
                                                 <textarea class="form-control" name="food_desc" id="food_desc"
-                                                    rows="1"></textarea>
+                                                    rows="1">{{ $food->food_desc }}s</textarea>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-xs-12">
                                                 <br>
                                                 <button class="btn btn-lg btn-success" type="submit"><i
-                                                        class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                                        class="glyphicon glyphicon-ok-sign"></i> Update</button>
                                                 <button class="btn btn-lg" type="reset"><i
                                                         class="glyphicon glyphicon-repeat"></i>
                                                     Reset</button>

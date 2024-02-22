@@ -381,25 +381,18 @@
                         <!--/col-3-->
 
                         <div class="col-sm-9">
-<<<<<<< HEAD
 
                             @if (Session::has('success'))
-=======
-                           
-                        @if (Session::has('success'))
->>>>>>> cddebeb13385207a3991f88382a002219e13eb26
+
                             <div class="alert alert-success" role="alert">
                                 Insert Success
                             </div>
-                        @endif
-                        @if (Session::has('error'))
+                            @endif
+                            @if (Session::has('error'))
                             <div class="alert alert-danger" role="alert">
                                 {{ Session::get('error') }}
                             </div>
-                        @endif
-
-
-
+                            @endif
                             <ul class="nav nav-tabs">
                                 <li class="active"><a data-toggle="tab" href="#home">Food</a></li>
                             </ul>
