@@ -55,5 +55,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::POST('/save', [InsertFoodController::class, 'save'])->name('save');
     Route::get('/edit{id}', [InsertFoodController::class, 'edit'])->name('food.edit');
     Route::delete('/food/{id}', [InsertFoodController::class, 'destroy'])->name('food.destroy');
+    Route::get('/search', [InsertFoodController::class,'search'])->name('food.search');
+
 
 });

@@ -44,7 +44,7 @@ class InsertFoodController extends Controller
                 'food_desc' => $req->food_desc,
                 'food_category_id' => $req->food_category_id,
                 'food_img' => $imageName,
-                'food_active' => $req->food_active == 1,
+
 
                 // Add the image name to the data array
             ];
@@ -69,7 +69,7 @@ class InsertFoodController extends Controller
         $cfood['cfood'] = DB::table('food_category')
             ->select('food_category_id', 'food_category_name')
             ->get();
-        return view('backend.edit', ['food' => $food],$cfood);
+        return view('backend.edit', ['food' => $food], $cfood);
     }
 
     // end edit
@@ -82,4 +82,23 @@ class InsertFoodController extends Controller
         //    dd($id);
         return redirect('admin/table')->with('success', 'Data has been deleted successfully.');
     }
+    public function search(Request $request)
+    {
+        // Get the search query from the request
+        $q_search = $request->input('q_search');
+
+        // Perform the search query
+        $food = DB::table('food_menu')
+            ->where('food_name', 'like', '%' . $q_search . '%')
+            ->orWhere('food_desc', 'like', '%' . $q_search . '%')
+            ->orWhere('price', 'like', '%' . $q_search . '%')
+            ->paginate(10); // Change 10 to your desired pagination limit
+            // if ($food->isEmpty()) {
+            //     return view('backend.r', ['q_search' =>  $q_search]);
+            // }
+        // Pass the search results to your view
+        return view('backend.table', ['food' => $food]);
+    }
+
+
 }
