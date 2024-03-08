@@ -71,8 +71,42 @@ class InsertFoodController extends Controller
             ->get();
         return view('backend.edit', ['food' => $food], $cfood);
     }
-
     // end edit
+    public function update(Request $request)
+    {
+        // Validate the form data
+        $request->validate([
+            'food_name' => 'required',
+            'price' => 'required|numeric',
+            'food_category_id' => 'required',
+            'food_status' => 'required',
+            'food_desc' => 'required',
+        ]);
+
+        // Retrieve the food record from the database based on the food_id
+        $food = DB::table('food_menu')
+            ->where('food_id', $request->input('food_id'))
+            ->first();
+
+        // Check if the food record exists
+        if (!$food) {
+            return redirect()->back()->with('error', 'Food not found');
+        }
+
+        // Update the food record with the new data
+        DB::table('food_menu')
+            ->where('food_id', $request->input('food_id'))
+            ->update([
+                'food_name' => $request->input('food_name'),
+                'price' => $request->input('price'),
+                'food_category_id' => $request->input('food_category_id'),
+                'food_status' => $request->input('food_status'),
+                'food_desc' => $request->input('food_desc'),
+            ]);
+
+        // Redirect with success message
+        return redirect()->back()->with('success', 'Food updated successfully');
+    }
     public function destroy($id)
     {
         // Find the item by ID
@@ -89,10 +123,13 @@ class InsertFoodController extends Controller
 
         // Perform the search query
         $food = DB::table('food_menu')
+        
             ->where('food_name', 'like', '%' . $q_search . '%')
             ->orWhere('food_desc', 'like', '%' . $q_search . '%')
             ->orWhere('price', 'like', '%' . $q_search . '%')
-            ->paginate(10); // Change 10 to your desired pagination limit
+            
+
+            ->paginate(4); // Change 10 to your desired pagination limit
             // if ($food->isEmpty()) {
             //     return view('backend.r', ['q_search' =>  $q_search]);
             // }

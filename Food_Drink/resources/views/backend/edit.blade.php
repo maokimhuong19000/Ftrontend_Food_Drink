@@ -366,7 +366,7 @@
 
                     <div class="row">
                         <div class="col-sm-3"><!--left col-->
-                        <form action="{{ route('food.edit', ['id' => $food->food_id]) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('food.update') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="text-center">
                                     <img id="food_img" src="{{ asset($food->food_img) }}"   class="avatar img-circle img-thumbnail" height="200px" width="200px"   alt="Food Image">
@@ -384,7 +384,7 @@
                             @if (Session::has('success'))
 
                             <div class="alert alert-success" role="alert">
-                                Insert Success
+                                Update Success
                             </div>
                             @endif
                             @if (Session::has('error'))
@@ -398,9 +398,9 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="home">
                                     <hr>
-                                    <form class="form"  method="POST"
-                                        id="registrationForm" enctype="multipart/form-data">
+                                    <form action="{{ route('food.update') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
+                                     
                                         <input type="hidden" name="food_id" value="{{$food->food_id}}">
                                         <div class="form-group">
                                             <div class="col-xs-6">
@@ -437,7 +437,7 @@
                                                     name="food_category_id">
                                                     <option selected></option>
                                                     @foreach ($cfood as $item)
-                                                    <option value="{{ $item->food_category_id }}" {{$food->food_category_id==$item->food_category_id ? 'selected': ''}}>
+                                                    <option value="{{ $item->food_category_id }}" {{$food->food_category_id == $item->food_category_id ? 'selected' : ''}}>
                                                         {{ $item->food_category_name }}
                                                     </option>
                                                     @endforeach
@@ -452,8 +452,8 @@
                                                 </label>
                                                 <select class="form-control" id="food_status" name="food_status">
                                                     <option selected>......</option>
-                                                    <option value="1" {{$food->food_status=='1' ? 'selected' : '' }}>Aailable</option>
-                                                    <option value="0" {{$food->food_status=='0' ? 'selected' : '' }}>Unavilable</option>
+                                                    <option value="1" {{$food->food_status == '1' ? 'selected' : '' }}>Aailable</option>
+                                                    <option value="0" {{$food->food_status == '0' ? 'selected' : '' }}>Unavilable</option>
                                                 </select>
                                             </div>
                                         </div>

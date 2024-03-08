@@ -12,6 +12,7 @@ class TableController extends Controller
 
         $food['food']=DB::table('food_menu')
         ->orderBy('food_id')
+        ->where('food_active','1')
         ->paginate('4');
         $cfood['cfood'] = DB::table('food_category')
         ->select('food_category_id', 'food_category_name')

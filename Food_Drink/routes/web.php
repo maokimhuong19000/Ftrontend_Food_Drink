@@ -6,7 +6,9 @@ use App\Http\Controllers\Backend\InsertDataController;
 use App\Http\Controllers\Backend\InsertFoodController;
 use App\Http\Controllers\Backend\LoginController;
 use App\Http\Controllers\Backend\MasterController;
+use App\Http\Controllers\Backend\SessionController;
 use App\Http\Controllers\Backend\TableController;
+use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Fronted\AboutController;
 use App\Http\Controllers\Fronted\BlogController;
 use App\Http\Controllers\Fronted\CartController;
@@ -53,9 +55,16 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/button', [ButtonsController::class, 'button']);
     Route::get('/table', [TableController::class, 'table']);
     Route::POST('/save', [InsertFoodController::class, 'save'])->name('save');
+    Route::POST('/update', [InsertFoodController::class, 'update'])->name('food.update');
     Route::get('/edit{id}', [InsertFoodController::class, 'edit'])->name('food.edit');
     Route::delete('/food/{id}', [InsertFoodController::class, 'destroy'])->name('food.destroy');
     Route::get('/search', [InsertFoodController::class,'search'])->name('food.search');
+});
+
+Route::get('/test',[SessionController::class, 'test']);
 
 
+Route::controller(UserController::class)->group(function(){
+    Route::get('/login','login');
+    Route::post('login/go','go');
 });
