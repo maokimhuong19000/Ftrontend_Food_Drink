@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 // Frontend Routes
-Route::get('/', [HomeController::class, 'home']);
+Route::get('/', [UserController::class, 'login']);
 Route::get('/about', [AboutController::class, 'about']);
 Route::get('/menu', [MenuController::class, 'menu']);
 Route::get('/service', [ServiceController::class, 'service']);

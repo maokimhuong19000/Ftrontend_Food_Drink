@@ -22,10 +22,11 @@ class UserController extends Controller
             ->where("password", $password)
             ->first();
 
-        // dd($name, $password);
+       
 
         if($name != null){
-            session()->flash('success','Login success');
+            // session()->flash('success','Login success');
+            return redirect('/admin');
           
         }else{
             session()->flash('error','Login failed');
