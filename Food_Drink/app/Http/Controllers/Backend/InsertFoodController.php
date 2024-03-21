@@ -44,12 +44,11 @@ class InsertFoodController extends Controller
                 'food_desc' => $req->food_desc,
                 'food_category_id' => $req->food_category_id,
                 'food_img' => $imageName,
-
-
                 // Add the image name to the data array
             ];
 
             // Insert data into the database
+            dd($req->all());
             $i = DB::table('food_menu')->insert($fdata);
             if ($i) {
                 return redirect('admin/button')->with('success', 'Insert Success');
@@ -75,6 +74,7 @@ class InsertFoodController extends Controller
     public function update(Request $request)
     {
         // Validate the form data
+
         $request->validate([
             'food_name' => 'required',
             'price' => 'required|numeric',
@@ -84,16 +84,19 @@ class InsertFoodController extends Controller
         ]);
 
         // Retrieve the food record from the database based on the food_id
+
         $food = DB::table('food_menu')
             ->where('food_id', $request->input('food_id'))
             ->first();
 
         // Check if the food record exists
+
         if (!$food) {
             return redirect()->back()->with('error', 'Food not found');
         }
 
         // Update the food record with the new data
+
         DB::table('food_menu')
             ->where('food_id', $request->input('food_id'))
             ->update([
@@ -105,35 +108,34 @@ class InsertFoodController extends Controller
             ]);
 
         // Redirect with success message
+
         return redirect()->back()->with('success', 'Food updated successfully');
     }
     public function destroy($id)
     {
         // Find the item by ID
+
         $i = DB::table('food_menu')
             ->where('food_id', $id)
             ->update(['food_active' => '0']);
+
         //    dd($id);
+
         return redirect('admin/table')->with('success', 'Data has been deleted successfully.');
     }
     public function search(Request $request)
     {
         // Get the search query from the request
+
         $q_search = $request->input('q_search');
 
         // Perform the search query
+
         $food = DB::table('food_menu')
-        
             ->where('food_name', 'like', '%' . $q_search . '%')
             ->orWhere('food_desc', 'like', '%' . $q_search . '%')
             ->orWhere('price', 'like', '%' . $q_search . '%')
-            
-
-            ->paginate(4); // Change 10 to your desired pagination limit
-            // if ($food->isEmpty()) {
-            //     return view('backend.r', ['q_search' =>  $q_search]);
-            // }
-        // Pass the search results to your view
+            ->paginate(4);
         return view('backend.table', ['food' => $food]);
     }
 
