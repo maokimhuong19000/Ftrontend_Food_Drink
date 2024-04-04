@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'Bokor';
+    src: url('Bokor.woff2') format('woff2'),
+        url('Bokor.woff') format('woff'),
+        url('Bokor.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-size: 25px;
+    font-display: swap;
+}
+

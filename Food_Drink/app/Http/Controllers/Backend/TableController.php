@@ -3,11 +3,19 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class TableController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware(function($req,$next){
+           app()->setLocale(Auth::user()->language);
+           return $next($req);
+        });
+     }
     public function table(){
 
         $food['food']=DB::table('food_menu')

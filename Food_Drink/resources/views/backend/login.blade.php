@@ -2,14 +2,10 @@
 <link href="{{ asset('backend/assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
 <body class="bg-gradient-primary">
-
     <div class="container">
-
         <!-- Outer Row -->
         <div class="row justify-content-center">
-
             <div class="col-xl-10 col-lg-12 col-md-9">
-
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
@@ -19,23 +15,34 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        @if(session('error'))
+                                        <div class="alert alert-danger">{{ session('error') }}</div>
+                                        @endif
                                     </div>
-
-                                    @if (Session::has('error'))
-                                    <div class="alert alert-primary" role="alert">
-                                        login failed	
-                                    </div>
-                                    @endif
-
-                                    <form action="{{url('login/go')}}" method="post" class="user">
+                                    <form action="{{route('login.post')}}" method="post" class="user">
                                         @csrf
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="name"
-                                                name="name" placeholder="Enter Name..." required>
+                                            <input type="email" class="form-control form-control-user" id="email"
+                                                name="email" placeholder="Email">
+                                            @if($errors->has('email'))
+                                            <span class="text-danger">{{$errors->first('email')}}</span>
+                                            @endif
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user" id="password"
-                                                name="password" placeholder="Password" required>
+                                                name="password" placeholder="Password">
+                                            @if($errors->has('password'))
+                                            <span class="text-danger">{{$errors->first('password')}}</span>
+                                            @endif
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <select class="form-control" id="language" name="language" >
+                                            <option value="">Choose language</option>
+                                                <option value="1">EN</option>
+                                                <option value="0">KH</option>
+                                            </select>
+
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\InsertFood;
+use Auth;
 use Illuminate\Http\Request;
 use App\Models\InsertData;
 use Exception;
@@ -11,6 +12,13 @@ use Illuminate\Support\Facades\DB;
 
 class InsertFoodController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware(function($req,$next){
+           app()->setLocale(Auth::user()->language);
+           return $next($req);
+        });
+     }
     //add data
     public function insert(Request $req)
     {
@@ -48,7 +56,7 @@ class InsertFoodController extends Controller
             ];
 
             // Insert data into the database
-            dd($req->all());
+            // dd($req->all());
             $i = DB::table('food_menu')->insert($fdata);
             if ($i) {
                 return redirect('admin/button')->with('success', 'Insert Success');
@@ -94,7 +102,19 @@ class InsertFoodController extends Controller
         if (!$food) {
             return redirect()->back()->with('error', 'Food not found');
         }
-
+        if ($request->hasFile('food_img')) {
+            $image = $request->file('food_img');
+            $imageName = 'frontend/assets/images/' . time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('frontend/assets/images'), $imageName);
+    
+            // Delete the old image file if it exists
+            if (file_exists(public_path($food->food_img))) {
+                unlink(public_path($food->food_img));
+            }
+        } else {
+            // Keep the existing image if no new image is provided
+            $imageName = $food->food_img;
+        }
         // Update the food record with the new data
 
         DB::table('food_menu')
@@ -105,6 +125,7 @@ class InsertFoodController extends Controller
                 'food_category_id' => $request->input('food_category_id'),
                 'food_status' => $request->input('food_status'),
                 'food_desc' => $request->input('food_desc'),
+                'food_img' => $imageName,
             ]);
 
         // Redirect with success message

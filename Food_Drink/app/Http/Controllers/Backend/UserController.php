@@ -8,31 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function login()
-    {
-        return view('backend.login');
+    public function usertable(Request $req){
+        
+        $datauser=DB::table('users')->get();
+        
+        return view('backend.user_table',compact('datauser'));
     }
-    public function go(Request $req)
-    {
-        $name = $req->name;
-        $password = md5($req->password);
-        // dd($name,$password);
-        $user = DB::table('users')
-            ->where("name", $name)
-            ->where("password", $password)
-            ->first();
-
-       
-
-        if($name != null){
-            // session()->flash('success','Login success');
-            return redirect('/admin');
-          
-        }else{
-            session()->flash('error','Login failed');
-            return view('backend.login');
-        }
-    }
-
-
 }

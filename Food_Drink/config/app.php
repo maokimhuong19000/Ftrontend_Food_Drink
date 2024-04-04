@@ -84,6 +84,7 @@ return [
     */
 
     'locale' => 'en',
+    'locales' => ['en'=>'english','kh'=>'khmer'],
 
     /*
     |--------------------------------------------------------------------------
@@ -164,6 +165,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+
 
         /*
          * Package Service Providers...
@@ -196,6 +199,7 @@ return [
         // ...
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Auth' => Illuminate\Support\Facades\Auth::class,
     ])->toArray(),
 
 ];
